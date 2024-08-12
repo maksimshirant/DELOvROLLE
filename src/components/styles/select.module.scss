@@ -1,0 +1,15 @@
+.select {
+   padding: 5px 15px;
+   margin: 20px 20px 0px;
+   color: #cb6868;
+   background-color: inherit;
+   border: 1px solid #cb6868;
+   border-radius: 5px;
+   cursor: pointer;
+   font-size: 20px;
+   font-weight: 600;
+
+   &:hover {
+      box-shadow: 1px 1px 10px #cb6868;
+   }
+}
