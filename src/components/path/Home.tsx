@@ -18,7 +18,7 @@ const Home: FC = () => {
    const [selectedSort, setSelectedSort] = useState<string>('');
    // Состояние модального окна
    const [modal, setModal] = useState<boolean>(false);
-   // Состояние выбранного ролла
+   // Состояние выбранных роллов
    const [selectedRoll, setSelectedRoll] = useState<Products | null>(null);
 
 
