@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Products } from '../types/productsType';
 import { fetchRolls } from '../fetching/fetchRolls';
 
-
+// тест 
 const rollsSlice = createSlice({
    name: 'rolls',
    initialState: [] as Products[],
