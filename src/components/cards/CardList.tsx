@@ -1,7 +1,7 @@
 
 import CardItem from './CardItem';
 import st from '../styles/cardList.module.scss'
-import { Products } from '../store/rollsSlice';
+import { Products } from '../types/productsType';
 import { FC } from 'react';
 
 // Тип для пропса в компонент списка

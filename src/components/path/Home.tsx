@@ -1,35 +1,51 @@
-import { FC, useState } from 'react';
-
+import { FC, useEffect, useState } from 'react';
 import CardList from '../cards/CardList';
 import Select from '../select/Select';
 import Modal from '../modal/Modal';
 import ItemInfo from '../cards/CartItemInfo';
 import { useDispatch, useSelector } from 'react-redux';
-import { Products, sortRolls } from '../store/rollsSlice';
+import { sortRolls } from '../store/rollsSlice';
 import { RootState } from '../store/store';
+import { fetchRolls } from '../fetching/fetchRolls';
+import { Products } from '../types/productsType';
+
+
 
 
 const Home: FC = () => {
 
+   //Состояние выбранной сортировки
    const [selectedSort, setSelectedSort] = useState<string>('');
+   // Состояние модального окна
    const [modal, setModal] = useState<boolean>(false);
+   // Состояние выбранных роллов
    const [selectedRoll, setSelectedRoll] = useState<Products | null>(null);
 
-   const rolls = useSelector((state: RootState) => state.rolls);
-   const dispatch = useDispatch();
 
+
+   const dispatch = useDispatch();
+   //  Получил массив роллов
+   const rolls = useSelector((state: RootState) => state.rolls);
+
+
+   // Запуск со старта
+   useEffect(() => {
+      dispatch(fetchRolls());
+   }, [dispatch]);
+
+   // Уже отсортированный ролл
    const sortPosts = (sort: string) => {
       setSelectedSort(sort);
       dispatch(sortRolls(sort));
    }
 
-   // Функция сортировки 
-
    return (
       <div>
+         {/* Модальное окно выбранного ролла ролла */}
          <Modal visible={modal} setVisible={setModal}>
             {selectedRoll && <ItemInfo rolls={selectedRoll} />}
          </Modal>
+         {/* Сортировка */}
          <Select
             value={selectedSort}
             onChange={sortPosts}
@@ -42,6 +58,7 @@ const Home: FC = () => {
                { value: 'lowWeight', name: 'Перекусить' },
                { value: 'highWeight', name: 'Объесться' },
             ]} />
+         {/* Список роллов */}
          <CardList rolls={rolls} setModal={setModal} onRollSelect={setSelectedRoll} />
       </div>
    );
