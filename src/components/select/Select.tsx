@@ -9,7 +9,7 @@ type Option = {
    name: string;
 };
 type DefaultValue = {
-   defaultValue: string,
+   defaultValue: any,
    options: Option[],
    value: string;
    onChange: (value: string) => void;

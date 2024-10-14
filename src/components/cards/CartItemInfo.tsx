@@ -2,12 +2,17 @@ import { FC } from 'react';
 import st from '../styles/itemInfo.module.scss'
 
 import Button from '../button/Button';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../store/cartSlice';
+
+
 
 type InfoProps = {
    rolls: any
 }
 
 const ItemInfo: FC<InfoProps> = ({ rolls }) => {
+
    return (
       <div className={st.info}>
          <div><img src={rolls.img} width="300" height="322" alt="" /></div>
@@ -17,8 +22,9 @@ const ItemInfo: FC<InfoProps> = ({ rolls }) => {
          <p className={st.info__ingredients}>Ингредиенты: {rolls.ingredients.join(', ')}</p>
 
          <div className={st.info__bottom}>
-            <p className={st.info__prise}>{rolls.price} за {rolls.much} шт.</p>
+            <p className={st.info__prise}>{rolls.price} руб. за {rolls.much} шт.</p>
             <Button>В корзину</Button>
+            <p> </p>
          </div>
       </div>
    );

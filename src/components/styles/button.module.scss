@@ -4,10 +4,15 @@
    background-color: inherit;
    border: 1px solid #cb6868;
    border-radius: 5px;
+   margin: 5px 0;
 
    &:hover {
       color: white;
       background-color: #d63f3f;
 
+   }
+
+   &:active {
+      background-color: #3c2d2d
    }
 }

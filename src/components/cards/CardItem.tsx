@@ -2,19 +2,26 @@
 import { FC } from 'react';
 import st from '../styles/cardItem.module.scss'
 import Button from '../button/Button';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../store/cartSlice';
 
-interface Product {
+export interface Product {
    id: number;
    name: string;
    weight: string;
    ingredients: string[];
-   price: string;
+   price: number;
    img: string,
    much: string
 
 }
 const CardItem: FC<{ product: Product, onClick: () => void }> = ({ product, onClick }) => {
+   const dispatch = useDispatch();
 
+   const handleAddToCart = () => {
+      dispatch(addToCart(product));
+      // Добавляем товар в корзину
+   };
 
 
    return (
@@ -27,9 +34,9 @@ const CardItem: FC<{ product: Product, onClick: () => void }> = ({ product, onCl
             <h3 className={st.card__weight}>Вес: {product.weight} / {product.much} шт.</h3>
          </div>
          <div className={st.card__add}>
-            <div className={st.card__prise}>{product.price}</div>
+            <div className={st.card__prise}>{product.price} руб.</div>
             <div>
-               <Button >В корзину</Button>
+               <Button onClick={handleAddToCart}>В корзину</Button>
 
 
             </div>

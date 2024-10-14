@@ -10,9 +10,9 @@ const rollsSlice = createSlice({
       sortRolls: (state, action) => {
          switch (action.payload) {
             case 'priceLow':
-               return [...state].sort((a, b) => parseInt(a.price) - parseInt(b.price));
+               return [...state].sort((a, b) => a.price - b.price);
             case 'priceHigh':
-               return [...state].sort((a, b) => parseInt(b.price) - parseInt(a.price));
+               return [...state].sort((a, b) => b.price - a.price);
             case 'nameAZ':
                return [...state].sort((a, b) => a.name.localeCompare(b.name));
             case 'nameZA':

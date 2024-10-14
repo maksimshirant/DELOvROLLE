@@ -8,6 +8,8 @@ import { sortRolls } from '../store/rollsSlice';
 import { RootState } from '../store/store';
 import { fetchRolls } from '../fetching/fetchRolls';
 import { Products } from '../types/productsType';
+import Paggination from '../paggination/Paggination';
+;
 
 
 
@@ -20,8 +22,14 @@ const Home: FC = () => {
    const [modal, setModal] = useState<boolean>(false);
    // Состояние выбранных роллов
    const [selectedRoll, setSelectedRoll] = useState<Products | null>(null);
+   // Паггинация
+   const [currentPage, setCurrentPage] = useState<number>(1);
+   const rollsPerPage = 8; // Количество роллов на странице
 
-
+   // При смене типа сортировки отлетаем на первую страницу
+   useEffect(() => {
+      setCurrentPage(1)
+   }, [selectedSort]);
 
    const dispatch = useDispatch();
    //  Получил массив роллов
@@ -37,6 +45,17 @@ const Home: FC = () => {
    const sortPosts = (sort: string) => {
       setSelectedSort(sort);
       dispatch(sortRolls(sort));
+   }
+   // Расчет для пагинации
+   const indexOfLastRoll = currentPage * rollsPerPage;
+   const indexOfFirstRoll = indexOfLastRoll - rollsPerPage;
+   const currentRolls = rolls.slice(indexOfFirstRoll, indexOfLastRoll);
+
+   // Функция для пагинации
+   function paginate(pageNumber: number): void {
+      setCurrentPage(pageNumber);
+      // автоматическая прокрутка вверх при выборе страницы
+      window.scrollTo({ top: 0, behavior: 'smooth' });
    }
 
    return (
@@ -59,7 +78,15 @@ const Home: FC = () => {
                { value: 'highWeight', name: 'Объесться' },
             ]} />
          {/* Список роллов */}
-         <CardList rolls={rolls} setModal={setModal} onRollSelect={setSelectedRoll} />
+         <CardList
+            rolls={currentRolls}
+            setModal={setModal}
+            onRollSelect={setSelectedRoll} />
+         <Paggination
+            currentPage={currentPage}
+            rollsPerPage={rollsPerPage}
+            totalRolls={rolls.length}
+            paginate={paginate} />
       </div>
    );
 };

@@ -1,0 +1,32 @@
+.paggination {
+   display: flex;
+   text-decoration: none;
+   list-style-type: none;
+   padding: 20px 0px;
+
+}
+
+.paggination__main {
+   width: 320px;
+   margin: 0 auto;
+}
+
+.page {
+   padding: 10px 20px;
+   margin: 0 5px;
+   border: 1px solid #333;
+   border-radius: 5px;
+   background-color: inherit;
+   cursor: pointer;
+
+   &:hover {
+      border: 1px solid #cb6868;
+      box-shadow: 1px 1px 10px #cb6868;
+   }
+}
+
+.page__current {
+   color: #cb6868;
+   font-weight: bold;
+   border: 1px solid #cb6868;
+}
