@@ -2,8 +2,7 @@ import { FC } from 'react';
 import st from '../styles/itemInfo.module.scss'
 
 import Button from '../button/Button';
-import { useDispatch } from 'react-redux';
-import { addToCart } from '../store/cartSlice';
+
 
 
 

@@ -20,7 +20,6 @@ const CardItem: FC<{ product: Product, onClick: () => void }> = ({ product, onCl
 
    const handleAddToCart = () => {
       dispatch(addToCart(product));
-      // Добавляем товар в корзину
    };
 
 
