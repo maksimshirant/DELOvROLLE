@@ -15,12 +15,18 @@ const App: React.FC = () => {
   return (
     <Router >
       <Navbar />
+      <div>
+        <img style={{ width: '100%', height: 'auto', display: 'block' }} src="img/Обложка1.jpg" alt="" />
+      </div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/delivery" element={<Delivery />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
+      <div>
+        <img style={{ width: '100%', height: 'auto', display: 'block' }} src="img/Обложка2.jpg" alt="" />
+      </div>
       <Footer />
     </Router>
   );

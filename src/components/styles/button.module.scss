@@ -1,14 +1,17 @@
 .button {
    padding: 10px 15px;
-   color: #cb6868;
-   background-color: inherit;
-   border: 1px solid #cb6868;
-   border-radius: 5px;
+   color: #ffffff;
+   background-color: rgba(0, 0, 0, 0.8);
+   border: none;
+   border-radius: 8px;
    margin: 5px 0;
 
    &:hover {
-      color: white;
-      background-color: #d63f3f;
+      color: rgb(5, 5, 5);
+      background-color: #f6f5f5;
+      box-shadow: 1px 1px 1px #10100e;
+      ;
+      font-weight: normal;
 
    }
 

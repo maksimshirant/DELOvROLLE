@@ -20,7 +20,7 @@ const Footer = () => {
          <div className={st.footer__item}>
             <h3 className={st.footer__title}>Оформить заказ:</h3>
             <p className={st.footer__links}>8-999-626-44-15</p>
-            <p className={st.footer__links}>8-905-399-33-91</p>
+            <p className={st.footer__links}>8-905-399-33-99</p>
          </div>
 
       </div>

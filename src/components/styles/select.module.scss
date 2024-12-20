@@ -1,15 +1,15 @@
 .select {
-   padding: 5px 15px;
+   padding: 8px 15px;
    margin: 20px 20px 0px;
-   color: #cb6868;
-   background-color: inherit;
-   border: 1px solid #cb6868;
-   border-radius: 5px;
+
+
+
+   border-radius: 9px;
    cursor: pointer;
-   font-size: 20px;
+   font-size: 15px;
    font-weight: 600;
 
    &:hover {
-      box-shadow: 1px 1px 10px #cb6868;
+      box-shadow: 2px 2px 2px #10100e;
    }
 }

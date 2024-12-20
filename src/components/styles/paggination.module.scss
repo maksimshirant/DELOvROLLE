@@ -3,30 +3,35 @@
    text-decoration: none;
    list-style-type: none;
    padding: 20px 0px;
+   background-color: rgba(0, 0, 0, 0.9);
 
 }
 
 .paggination__main {
-   width: 320px;
-   margin: 0 auto;
+   width: 100%;
+
+
 }
 
 .page {
-   padding: 10px 20px;
-   margin: 0 5px;
-   border: 1px solid #333;
-   border-radius: 5px;
+   padding: 5px 10px;
+   margin: 0 10px;
+   color: aliceblue;
    background-color: inherit;
+   border: none;
+   border-radius: 8px;
+   font-size: 20px;
+   font-weight: bold;
    cursor: pointer;
 
    &:hover {
-      border: 1px solid #cb6868;
-      box-shadow: 1px 1px 10px #cb6868;
+
+      box-shadow: 1px 1px 10px #f1c40f;
    }
 }
 
 .page__current {
-   color: #cb6868;
+   color: #f1c40f;
    font-weight: bold;
-   border: 1px solid #cb6868;
+   text-shadow: 0 0 10px #f1c40f;
 }

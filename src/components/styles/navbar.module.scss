@@ -1,49 +1,71 @@
 .navbar {
    display: flex;
    padding: 10px 20px;
-   border-bottom: 2px solid #333;
    justify-content: space-between;
    align-items: center;
    font-family: "Roboto", sans-serif;
+   background-color: rgba(0, 0, 0, 0.9);
 
    .navbar__line {
       display: flex;
-      min-width: 300px;
-      justify-content: space-between;
+      min-width: 250px;
+      justify-content: space-around;
    }
 
    .navbar__item {
+      font-size: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+      color: aliceblue;
 
-      text-decoration: none;
-      color: #333;
-      font-size: 20px;
-      font-weight: 700;
-      padding: 5px 10px;
-      border-radius: 10px;
    }
+
+   :hover {
+      color: #f1c40f;
+      text-shadow: 0 0 10px #f1c40f;
+   }
+
 
    .logo {
-      max-width: 100%;
-      margin: 0 auto;
-      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 3rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+
+      border-radius: 8px;
+      padding: 5px 3px;
    }
 
-   .logo1 {
-      font-size: 30px;
-      font-weight: 800;
-      color: #cb6868;
+   .phone {
+      font-weight: bold;
+      letter-spacing: 3px;
+      color: #fff;
+
+      padding: 5px 3px;
+      border-radius: 8px;
    }
 
-   .logo2 {
-      font-size: 20px;
-      font-weight: 800;
-      color: rgba(112, 111, 111, 1);
-      opacity: 1;
+   .logotext {
+      color: #fff;
+
    }
 
-   .logo3 {
-      font-size: 30px;
-      font-weight: 800;
-      color: #cb6868;
+   .logohighlight {
+      color: #f1c40f;
+      margin-left: 8px;
+      text-shadow: 0 0 10px #f1c40f;
    }
+
+
+
+
+
 }

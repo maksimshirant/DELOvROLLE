@@ -9,7 +9,7 @@ import { RootState } from '../store/store';
 import { fetchRolls } from '../fetching/fetchRolls';
 import { Products } from '../types/productsType';
 import Paggination from '../paggination/Paggination';
-;
+
 
 
 
@@ -60,6 +60,7 @@ const Home: FC = () => {
 
    return (
       <div>
+
          {/* Модальное окно выбранного ролла ролла */}
          <Modal visible={modal} setVisible={setModal}>
             {selectedRoll && <ItemInfo rolls={selectedRoll} />}
@@ -87,6 +88,7 @@ const Home: FC = () => {
             rollsPerPage={rollsPerPage}
             totalRolls={rolls.length}
             paginate={paginate} />
+
       </div>
    );
 };
