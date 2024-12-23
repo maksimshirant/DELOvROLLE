@@ -3,8 +3,9 @@ import React, { FC } from 'react';
 import st from '../styles/button.module.scss';
 
 type ButtonProps = {
-   children: string;
-   onClick?: () => void;
+
+   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;  // Обработчик клика с аргументом
+   children?: string;
 };
 
 const Button: FC<ButtonProps> = ({ children, onClick }) => {
@@ -12,7 +13,7 @@ const Button: FC<ButtonProps> = ({ children, onClick }) => {
       <button onClick={(e) => {
          e.stopPropagation();
          if (onClick) {
-            onClick();
+            onClick(e);
          }
       }}
          className={st.button}>

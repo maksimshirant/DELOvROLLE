@@ -51,4 +51,40 @@
 
       box-shadow: 2px 2px 2px #10100e;
    }
+
+
+
+}
+
+.card__quantity {
+
+   padding: 8px 25px;
+   color: #ffffff;
+   background-color: #ffffff;
+   border: none;
+   border-radius: 8px;
+   margin: 5px 0;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
+
+}
+
+.card__quantiti__btn {
+   color: rgba(0, 0, 0, 0.8);
+   border: none;
+   background-color: #ffffff;
+   font-size: 15px;
+   cursor: pointer;
+   font-weight: 600;
+   user-select: none;
+
+}
+
+.card__quantity__count {
+   font-size: 15px;
+   padding: 0 10px;
+   color: rgba(0, 0, 0, 0.8);
+   font-weight: 600;
+   cursor: pointer;
+   user-select: none;
+
 }

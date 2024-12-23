@@ -26,6 +26,9 @@ const Home: FC = () => {
    const [currentPage, setCurrentPage] = useState<number>(1);
    const rollsPerPage = 8; // Количество роллов на странице
 
+
+
+
    // При смене типа сортировки отлетаем на первую страницу
    useEffect(() => {
       setCurrentPage(1)
@@ -55,7 +58,7 @@ const Home: FC = () => {
    function paginate(pageNumber: number): void {
       setCurrentPage(pageNumber);
       // автоматическая прокрутка вверх при выборе страницы
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 250, behavior: 'smooth' });
    }
 
    return (

@@ -1,13 +1,16 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/store';
 import { removeFromCart, clearCart } from '../store/cartSlice';
 import st from '../styles/cart.module.scss'
 import Button from '../button/Button';
 import style from '../styles/itemInfo.module.scss'
-
+import Modal from '../modal/Modal';
+import OrderList from '../cards/OrderList';
+// КОРЗИНУ ОБНУЛЯТЬ ПОСЛЕ ОТПРАВКИ ФОРМЫ
 
 const Cart: FC = () => {
+   const [modal, setModal] = useState<boolean>(false);
    const cartItems = useSelector((state: RootState) => state.cart.items);
    const dispatch = useDispatch();
    const handleClearCart = () => {
@@ -25,11 +28,15 @@ const Cart: FC = () => {
    }, 0);
 
    return (
+
       <div className={st.cart__page}>
+         <Modal visible={modal} setVisible={setModal}>
+            {<OrderList setModal={setModal} totalPrice={totalPrice} cartItems={cartItems} />}
+         </Modal>
          <h1 className={st.cart__title}>Корзина:</h1>
          {cartItems.length === 0 ? (
             <div>
-               <p className={st.cart__text}>Нет добавленных товаров...</p>
+               <p className={st.cart__text}>Корзина пуста</p>
                <div style={{ textAlign: 'center' }}><img src="/img/sad.png" alt="" /></div>
             </div>
          ) : (
@@ -43,13 +50,15 @@ const Cart: FC = () => {
                         <h2 className={style.card__name}>{item.product.name}</h2>
                         <h3 className={style.card__weight}>{item.quantity} шт.</h3>
                         <h3 className={style.info__prise}>{item.product.price} руб.</h3>
+
                         <Button onClick={() => handleRemove(item.product.id)}>Удалить</Button>
+
                      </li>
                   ))}
                </ul>
                <div className={st.cart__total}>
                   <h2 >СУММА ЗАКАЗА: <span className={st.cart__summ}>{totalPrice}</span> руб.</h2>
-                  <div className={st.cart__delete__button}><Button >Оформить заказ</Button></div>
+                  <div className={st.cart__delete__button} ><Button onClick={() => setModal(true)} >Оформить заказ</Button></div>
                   <div className={st.cart__delete__button}><Button onClick={handleClearCart}>Очистить корзину</Button></div>
                </div>
 
@@ -61,7 +70,5 @@ const Cart: FC = () => {
 };
 
 export default Cart;
-function dispatch(arg0: { payload: undefined; type: "cart/clearCart"; }) {
-   throw new Error('Function not implemented.');
-}
+
 

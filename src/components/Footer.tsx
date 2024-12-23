@@ -7,12 +7,6 @@ const Footer = () => {
    return (
       <div className={st.footer}>
          <div className={st.footer__item}>
-            <h3 className={st.footer__title}>Навигация:</h3>
-            <Link className={st.footer__links} to='/'>Главная</Link>
-            <Link className={st.footer__links} to='/delivety'>Доставка</Link>
-            <Link className={st.footer__links} to='/about'>О нас</Link>
-         </div>
-         <div className={st.footer__item}>
             <h3 className={st.footer__title}>Время работы:</h3>
             <p className={st.footer__links}> Пн-Пт: 9:00 - 23:00</p>
             <p className={st.footer__links}>Сб-Вскр: 9:00 - 0:00</p>
