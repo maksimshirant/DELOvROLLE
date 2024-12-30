@@ -1,15 +1,35 @@
+$navbar-bg: rgba(0, 0, 0, 0.9);
+$navbar-font-family: "Roboto", sans-serif;
+$navbar-text-color: aliceblue;
+$navbar-hover-color: #f1c40f;
+$navbar-hover-shadow: 0 0 10px #f1c40f;
+$logo-font-size: 3rem;
+$logo-letter-spacing: 4px;
+$phone-letter-spacing: 3px;
+
 .navbar {
    display: flex;
    padding: 10px 20px;
    justify-content: space-between;
    align-items: center;
-   font-family: "Roboto", sans-serif;
-   background-color: rgba(0, 0, 0, 0.9);
+   font-family: $navbar-font-family;
+   background-color: $navbar-bg;
 
    .navbar__line {
       display: flex;
       min-width: 250px;
       justify-content: space-around;
+   }
+
+   .tg {
+      margin-left: 5px;
+      font-size: $logo-font-size;
+      color: $navbar-text-color;
+
+      &:hover {
+         color: $navbar-hover-color;
+         text-shadow: $navbar-hover-shadow;
+      }
    }
 
    .navbar__item {
@@ -21,57 +41,70 @@
       cursor: pointer;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
       transition: background-color 0.3s ease;
-      color: aliceblue;
+      color: $navbar-text-color;
 
-   }
-
-   :hover {
-      color: #f1c40f;
-      text-shadow: 0 0 10px #f1c40f;
+      &:hover {
+         color: $navbar-hover-color;
+         text-shadow: $navbar-hover-shadow;
+      }
    }
 
    .navbar__count {
-      color: #f1c40f;
+      color: $navbar-hover-color;
       padding-left: 3px;
       font-size: 20px;
-
    }
 
-   .logo {
+   .logo,
+   .phone {
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 3rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-
-      border-radius: 8px;
       padding: 5px 3px;
+      border-radius: 8px;
+      font-weight: bold;
+   }
+
+   .logo {
+      font-size: $logo-font-size;
+      text-transform: uppercase;
+      letter-spacing: $logo-letter-spacing;
    }
 
    .phone {
-      font-weight: bold;
-      letter-spacing: 3px;
-      color: #fff;
-
-      padding: 5px 3px;
-      border-radius: 8px;
+      letter-spacing: $phone-letter-spacing;
+      color: $navbar-text-color;
    }
 
    .logotext {
-      color: #fff;
-
+      color: $navbar-text-color;
    }
 
    .logohighlight {
-      color: #f1c40f;
+      color: $navbar-hover-color;
       margin-left: 8px;
-      text-shadow: 0 0 10px #f1c40f;
+      text-shadow: $navbar-hover-shadow;
    }
+}
 
 
+@media(max-width: 900px) {
+   .navbar {
+      flex-direction: column;
+      padding: 10px 0px;
 
+      .navbar__line {
+         padding: 25px 0;
+         min-width: 320px;
 
+         .navbar__item {
+            font-size: 40px;
+         }
+      }
+
+      .phone {
+         padding: 30px 0;
+      }
+   }
 
 }

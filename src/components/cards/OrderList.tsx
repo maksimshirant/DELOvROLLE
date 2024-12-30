@@ -1,12 +1,20 @@
-import React, { FC, useCallback, useState } from 'react';
+import React, { FC, useState } from 'react';
 import st from '../styles/order.module.scss'
 import Button from '../button/Button';
+import { InputMask } from 'primereact/inputmask';
+import { CartItem } from '../types/productsType';
+import { useDispatch } from 'react-redux';
+import { clearCart } from '../store/cartSlice';
+import { constPostRolls } from '../fetching/fetchRolls';
+import { AppDispatch } from '../store/store';
+
 
 type OrderListProps = {
    setModal: React.Dispatch<React.SetStateAction<boolean>>;
    totalPrice: number,
-   cartItems: any   // ИСПРАВИТЬ ANY
+   cartItems: CartItem[];
 };
+
 
 
 
@@ -20,10 +28,15 @@ const OrderList: FC<OrderListProps> = ({ setModal, totalPrice, cartItems }) => {
    const [formErrors, setFormErrors] = useState<string[]>([]);
    const [phone, setPhone] = useState('');
 
-   const handleClick = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
-      alert('Заказ выполнен');
-   }, []);
-   const handleSubmit = (e: React.FormEvent) => {
+   const dispatch = useDispatch<AppDispatch>()
+
+   const isFormValid =
+      name.trim() !== '' &&
+      phone.trim() !== '' &&
+      street.trim() !== '' &&
+      houseNumber.trim() !== '';
+
+   const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
 
       const errors: string[] = [];
@@ -35,6 +48,7 @@ const OrderList: FC<OrderListProps> = ({ setModal, totalPrice, cartItems }) => {
       if (!street || !houseNumber) {
          errors.push('Улица и дом обязательны для заполнения.');
       }
+      if (!phone) errors.push('Номер телефона обязателен для заполнения.');
 
       if (errors.length > 0) {
          setFormErrors(errors);
@@ -47,19 +61,31 @@ const OrderList: FC<OrderListProps> = ({ setModal, totalPrice, cartItems }) => {
             totalPrice,
             cartItems,
          };
-         console.log('Отправка данных:', formData);
+
+         try {
+            await dispatch(constPostRolls(formData));
+            alert('Заказ передан в сборку');
+            console.log('Отправка данных:', formData);
+            // Очистка формы
+            setName('');
+            setPhone('');
+            setStreet('');
+            setHouseNumber('');
+            setApartmentNumber('');
+            setFloor('');
+            setComment('');
+            setFormErrors([]);
+            setModal(false);
+            dispatch(clearCart());
+         } catch (error) {
+            alert('Произошла ошибка при отправке заказа');
+            console.error('Ошибка:', error);
+         }
 
 
-         setName('');
-         setPhone('');
-         setStreet('');
-         setHouseNumber('');
-         setApartmentNumber('');
-         setFloor('');
-         setComment('');
-         setFormErrors([]);
-         setModal(false)
       }
+
+
    };
    return (
       <div >
@@ -79,14 +105,7 @@ const OrderList: FC<OrderListProps> = ({ setModal, totalPrice, cartItems }) => {
 
             <div className={st.form}>
                <label className={st.title}>Номер телефона:</label>
-               <input className={st.input}
-                  type="text"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  maxLength={12}
-                  placeholder="+7 (___) ___-__-__"
-                  required
-               />
+               <InputMask id="phone" className={st.input} required onChange={(e: any) => setPhone(e.target.value)} value={phone} mask="+7 (999) 999-99-99" placeholder="(___) ___-____"></InputMask>
 
             </div>
 
@@ -105,11 +124,18 @@ const OrderList: FC<OrderListProps> = ({ setModal, totalPrice, cartItems }) => {
                </div>
                <div className={st.form}>
                   <label className={st.title}>Дом:</label>
+
                   <input
                      className={st.input}
-                     type="text"
+                     type="number"
                      value={houseNumber}
-                     onChange={(e) => setHouseNumber(e.target.value)}
+                     onChange={(e) => {
+                        const value = e.target.value;
+
+                        if (Number(value) <= 1000) {
+                           setHouseNumber(value);
+                        }
+                     }}
                      placeholder="Введите номер дома"
                      required
                   />
@@ -120,7 +146,13 @@ const OrderList: FC<OrderListProps> = ({ setModal, totalPrice, cartItems }) => {
                      className={st.input}
                      type="number"
                      value={apartmentNumber}
-                     onChange={(e) => setApartmentNumber(e.target.value)}
+                     onChange={(e) => {
+                        const value = e.target.value;
+
+                        if (Number(value) <= 1000) {
+                           setApartmentNumber(e.target.value)
+                        }
+                     }}
                      placeholder="Введите номер квартиры"
                   />
                </div>
@@ -130,7 +162,14 @@ const OrderList: FC<OrderListProps> = ({ setModal, totalPrice, cartItems }) => {
                      className={st.input}
                      type="number"
                      value={floor}
-                     onChange={(e) => setFloor(e.target.value)}
+                     onChange={(e) => {
+                        const value = e.target.value;
+
+                        if (Number(value) <= 50) {
+                           setFloor(e.target.value)
+                        }
+                     }}
+
                      placeholder="Введите номер этажа"
                   />
                </div>
@@ -148,10 +187,10 @@ const OrderList: FC<OrderListProps> = ({ setModal, totalPrice, cartItems }) => {
 
 
             {formErrors.length > 0 && (
-               <div style={{ color: 'red' }}>
+               <div >
                   <ul>
                      {formErrors.map((error, index) => (
-                        <li key={index}>{error}</li>
+                        <li className={st.errors} key={index}>{error}</li>
                      ))}
                   </ul>
                </div>
@@ -159,7 +198,7 @@ const OrderList: FC<OrderListProps> = ({ setModal, totalPrice, cartItems }) => {
 
 
             <div>
-               <Button onClick={handleClick} >Отправить</Button>
+               <Button onClick={handleSubmit} disabled={!isFormValid} >Оформить заказ</Button>
             </div>
          </form>
       </div>

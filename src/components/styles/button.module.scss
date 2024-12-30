@@ -1,21 +1,28 @@
+$button-padding: 10px 15px;
+$button-color: #ffffff;
+$button-bg: rgba(0, 0, 0, 0.8);
+$button-hover-color: rgb(5, 5, 5);
+$button-hover-bg: #f6f5f5;
+$button-active-bg: #3c2d2d;
+$button-border-radius: 8px;
+$button-margin: 5px 0;
+
 .button {
-   padding: 10px 15px;
-   color: #ffffff;
-   background-color: rgba(0, 0, 0, 0.8);
+   padding: $button-padding;
+   color: $button-color;
+   background-color: $button-bg;
    border: none;
-   border-radius: 8px;
-   margin: 5px 0;
+   border-radius: $button-border-radius;
+   margin: $button-margin;
 
    &:hover {
-      color: rgb(5, 5, 5);
-      background-color: #f6f5f5;
+      color: $button-hover-color;
+      background-color: $button-hover-bg;
       box-shadow: 1px 1px 1px #10100e;
-      ;
       font-weight: normal;
-
    }
 
    &:active {
-      background-color: #3c2d2d
+      background-color: $button-active-bg;
    }
 }

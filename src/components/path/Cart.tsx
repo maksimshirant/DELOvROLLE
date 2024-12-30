@@ -1,27 +1,26 @@
 import { FC, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/store';
-import { removeFromCart, clearCart } from '../store/cartSlice';
+import { clearCart } from '../store/cartSlice';
 import st from '../styles/cart.module.scss'
 import Button from '../button/Button';
-import style from '../styles/itemInfo.module.scss'
 import Modal from '../modal/Modal';
 import OrderList from '../cards/OrderList';
-// КОРЗИНУ ОБНУЛЯТЬ ПОСЛЕ ОТПРАВКИ ФОРМЫ
+import ProductItem from '../cards/ProductItem';
+
+
 
 const Cart: FC = () => {
+   // модальное окно для заказа
    const [modal, setModal] = useState<boolean>(false);
+   // содержимое корзины
    const cartItems = useSelector((state: RootState) => state.cart.items);
    const dispatch = useDispatch();
+   //очистка корзины
    const handleClearCart = () => {
       dispatch(clearCart());
    };
-   const handleRemove = (id: number) => {
-      dispatch(removeFromCart(id));
-   };
-
-
-
+   // суммарная цена
    const totalPrice = cartItems.reduce((sum, item) => {
       const price: number = item.product.price
       return sum + (price * item.quantity);
@@ -33,33 +32,24 @@ const Cart: FC = () => {
          <Modal visible={modal} setVisible={setModal}>
             {<OrderList setModal={setModal} totalPrice={totalPrice} cartItems={cartItems} />}
          </Modal>
-         <h1 className={st.cart__title}>Корзина:</h1>
+
          {cartItems.length === 0 ? (
             <div>
-               <p className={st.cart__text}>Корзина пуста</p>
-               <div style={{ textAlign: 'center' }}><img src="/img/sad.png" alt="" /></div>
+               <p className={st.cart__title}>Корзина пуста</p>
+
             </div>
          ) : (
             <div className={st.cart__choise}>
-               <ul className={st.cart__items}>
+               <h1 className={st.cart__title}>Корзина:</h1>
+               <div className={st.cart__items}>
                   {cartItems.map(item => (
-                     <li className={st.cart__item} key={item.product.id}>
-                        <div className={style.card__img}>
-                           <img width="200" height="222" src={item.product.img} alt={item.product.name} />
-                        </div>
-                        <h2 className={style.card__name}>{item.product.name}</h2>
-                        <h3 className={style.card__weight}>{item.quantity} шт.</h3>
-                        <h3 className={style.info__prise}>{item.product.price} руб.</h3>
-
-                        <Button onClick={() => handleRemove(item.product.id)}>Удалить</Button>
-
-                     </li>
+                     <ProductItem key={item.product.id} product={item.product} onClick={() => { }} />
                   ))}
-               </ul>
+               </div>
                <div className={st.cart__total}>
                   <h2 >СУММА ЗАКАЗА: <span className={st.cart__summ}>{totalPrice}</span> руб.</h2>
-                  <div className={st.cart__delete__button} ><Button onClick={() => setModal(true)} >Оформить заказ</Button></div>
-                  <div className={st.cart__delete__button}><Button onClick={handleClearCart}>Очистить корзину</Button></div>
+                  <Button onClick={() => setModal(true)} >Оформить заказ</Button>
+                  <Button onClick={handleClearCart}>Очистить корзину</Button>
                </div>
 
             </div>

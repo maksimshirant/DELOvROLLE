@@ -1,21 +1,20 @@
 import { FC, useEffect, useState } from 'react';
-import CardList from '../cards/CardList';
 import Select from '../select/Select';
 import Modal from '../modal/Modal';
-import ItemInfo from '../cards/CartItemInfo';
 import { useDispatch, useSelector } from 'react-redux';
 import { sortRolls } from '../store/rollsSlice';
 import { RootState } from '../store/store';
 import { fetchRolls } from '../fetching/fetchRolls';
 import { Products } from '../types/productsType';
 import Paggination from '../paggination/Paggination';
+import ProductList from '../cards/ProductList';
+import ProductItemInfo from '../cards/ProductItemInfo';
 
 
 
 
 
 const Home: FC = () => {
-
    //Состояние выбранной сортировки
    const [selectedSort, setSelectedSort] = useState<string>('');
    // Состояние модального окна
@@ -63,10 +62,9 @@ const Home: FC = () => {
 
    return (
       <div>
-
          {/* Модальное окно выбранного ролла ролла */}
          <Modal visible={modal} setVisible={setModal}>
-            {selectedRoll && <ItemInfo rolls={selectedRoll} />}
+            {selectedRoll && <ProductItemInfo product={selectedRoll} />}
          </Modal>
          {/* Сортировка */}
          <Select
@@ -82,10 +80,11 @@ const Home: FC = () => {
                { value: 'highWeight', name: 'Объесться' },
             ]} />
          {/* Список роллов */}
-         <CardList
+         <ProductList
             rolls={currentRolls}
             setModal={setModal}
             onRollSelect={setSelectedRoll} />
+         {/* Паггинация */}
          <Paggination
             currentPage={currentPage}
             rollsPerPage={rollsPerPage}

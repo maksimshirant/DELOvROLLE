@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { Product } from "../cards/CardItem";
+import { Product } from "../cards/ProductItem";
 
 
 interface CartItem {
@@ -12,7 +12,7 @@ interface CartState {
 }
 
 const initialState: CartState = {
-   items: [],
+   items: JSON.parse(localStorage.getItem('items') || '[]'),
 };
 
 const cartSlice = createSlice({
@@ -20,6 +20,7 @@ const cartSlice = createSlice({
    initialState,
    reducers: {
       addToCart: (state, action: PayloadAction<Product>) => {
+
          const itemIndex = state.items.findIndex(
             item => item.product.id === action.payload.id
          );
@@ -28,16 +29,21 @@ const cartSlice = createSlice({
          } else {
             state.items.push({ product: action.payload, quantity: 1 });
          }
+         localStorage.setItem('items', JSON.stringify(state.items))
       },
       removeFromCart: (state, action: PayloadAction<number>) => {
+
          state.items = state.items.filter(item => item.product.id !== action.payload);
+         localStorage.setItem('items', JSON.stringify(state.items))
       },
       clearCart: state => {
          state.items = [];
+         localStorage.setItem('items', JSON.stringify(state.items))
       },
       incrementQuantity: (state, action: PayloadAction<number>) => {
          const item = state.items.find(item => item.product.id === action.payload);
          if (item) item.quantity += 1;
+         localStorage.setItem('items', JSON.stringify(state.items))
       },
       decrementQuantity: (state, action: PayloadAction<number>) => {
          const item = state.items.find(item => item.product.id === action.payload);
@@ -47,6 +53,7 @@ const cartSlice = createSlice({
                state.items = state.items.filter(i => i.product.id !== action.payload);
             }
          }
+         localStorage.setItem('items', JSON.stringify(state.items))
       },
    }
 });

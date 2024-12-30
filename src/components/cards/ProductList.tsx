@@ -1,24 +1,25 @@
 
-import CardItem from './CardItem';
-import st from '../styles/cardList.module.scss'
+import st from '../styles/productList.module.scss'
 import { Products } from '../types/productsType';
 import { FC } from 'react';
+import ProductItem from './ProductItem';
 
 // Тип для пропса в компонент списка
-type CardListProps = {
+type ProductListProps = {
    rolls: Products[];
    onRollSelect: (product: Products) => void;
    setModal: (visible: boolean) => void;
+
 };
 
-const CardList: FC<CardListProps> = ({ rolls, setModal, onRollSelect }) => {
+const ProductList: FC<ProductListProps> = ({ rolls, setModal, onRollSelect }) => {
 
    return (
       <div
          className={st.card__list}>
          {rolls.map((product) =>
             <div key={product.id}>
-               <CardItem onClick={() => {
+               <ProductItem onClick={() => {
                   onRollSelect(product);
                   setModal(true);
                }} product={product} />
@@ -27,4 +28,4 @@ const CardList: FC<CardListProps> = ({ rolls, setModal, onRollSelect }) => {
    );
 };
 
-export default CardList;
+export default ProductList;

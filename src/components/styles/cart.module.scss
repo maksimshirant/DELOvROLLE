@@ -22,10 +22,7 @@
 }
 
 .cart__choise {
-   max-width: 1000px;
-   margin: 0 auto;
-
-
+   padding: 0 20px;
 }
 
 .cart__items {
@@ -57,5 +54,7 @@
 }
 
 .cart__summ {
-   color: #cb6868;
+   color: #463b0f;
+   letter-spacing: 1px;
+   text-shadow: 1px 1px 10px #f1c40f;
 }

@@ -1,0 +1,126 @@
+$font-family: "Roboto", sans-serif;
+$color-gray-light: #636362;
+$color-gray-dark: #6d6666;
+$color-gray-darker: #4c5636;
+$font-weight-light: 300;
+$font-weight-bold: 700;
+$card-padding: 25px 15px;
+$border-radius: 16px;
+
+.card__item {
+   padding: $card-padding;
+   border-radius: $border-radius;
+   text-align: center;
+   user-select: none;
+   min-width: 320px;
+
+   &:hover {
+      box-shadow: 2px 2px 2px #10100e;
+   }
+
+   .card__name,
+   .card__weight,
+   .card__ingredients,
+   .card__prise {
+      font-family: $font-family;
+      font-style: normal;
+      padding: 5px 0;
+   }
+
+   .card__name {
+      font-weight: $font-weight-bold;
+   }
+
+   .card__weight {
+      font-weight: $font-weight-light;
+      color: $color-gray-light;
+      font-size: 17px;
+   }
+
+   .card__ingredients {
+      font-weight: $font-weight-light;
+      color: $color-gray-dark;
+      font-size: 15px;
+      min-height: 60px;
+   }
+
+   .card__prise {
+      font-weight: $font-weight-bold;
+      font-size: 25px;
+      padding: 5px 20px;
+   }
+
+   .card__add {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 10px 0;
+   }
+}
+
+.card__quantity {
+   min-width: 100px;
+   padding: 8px 25px;
+   color: #ffffff;
+   background-color: #ffffff;
+   border: none;
+   border-radius: 8px;
+   margin: 5px 0;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
+}
+
+.card__quantiti__btn,
+.card__quantity__count {
+   color: rgba(0, 0, 0, 0.8);
+   border: none;
+   background-color: #ffffff;
+   font-size: 12px;
+   font-weight: 600;
+   user-select: none;
+   cursor: pointer;
+}
+
+.card__quantity__count {
+   font-family: $font-family;
+   font-size: 15px;
+   padding: 0 10px;
+}
+
+.noHoverBorder {
+   border: none !important;
+   transition: none !important;
+
+   &:hover {
+      border: none !important;
+      box-shadow: none !important;
+   }
+}
+
+.info__ingredients,
+.info__legend {
+   font-family: $font-family;
+   font-style: normal;
+   font-size: 15px;
+   max-width: 320px;
+   text-align: center;
+   margin: 0 auto;
+   padding: 10px 0;
+
+   &.info__ingredients {
+      font-weight: 800;
+      color: $color-gray-dark;
+   }
+
+   &.info__legend {
+      font-weight: $font-weight-light;
+      color: $color-gray-darker;
+      padding: 15px 0;
+   }
+}
+
+
+@media(max-width: 1350px) {
+   .card__item {
+      padding: 2px 2px;
+   }
+}

@@ -6,9 +6,10 @@ type ButtonProps = {
 
    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;  // Обработчик клика с аргументом
    children?: string;
+   disabled?: boolean
 };
 
-const Button: FC<ButtonProps> = ({ children, onClick }) => {
+const Button: FC<ButtonProps> = ({ children, onClick, disabled }) => {
    return (
       <button onClick={(e) => {
          e.stopPropagation();

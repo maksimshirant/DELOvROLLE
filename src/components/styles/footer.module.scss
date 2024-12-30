@@ -1,33 +1,35 @@
+$footer-bg: rgba(0, 0, 0, 0.9);
+$footer-text-color: #fbfbfb;
+$footer-title-color: #fffefe;
+$footer-font-family: "Roboto", sans-serif;
+$footer-padding: 10px 0px;
+$footer-link-padding: 15px 0px;
+$footer-link-font-size: 18px;
+$footer-title-font-size: 20px;
+$footer-title-letter-spacing: 4px;
+
 .footer {
    display: flex;
-   justify-content: space-around;
-   padding: 10px 0;
-
-   background-color: rgba(0, 0, 0, 0.9);
+   background-color: $footer-bg;
 
    .footer__item {
-
       text-align: center;
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
+
+
    }
 
-   .footer__links {
-      font-size: 18px;
-      text-decoration: none;
-      color: #fbfbfb;
-      padding: 15px 0;
-      font-weight: 800;
-      font-family: 'Montserrat';
-   }
+
+
 
    .footer__title {
-      font-size: 20px;
-      letter-spacing: 4px;
+      font-family: $footer-font-family;
       font-weight: 800;
+      font-size: $footer-title-font-size;
+      letter-spacing: $footer-title-letter-spacing;
       text-transform: uppercase;
-      color: #fffefe;
-      font-family: 'Montserrat';
-
+      color: $footer-title-color;
+      padding: 10px 30px;
    }
 }
