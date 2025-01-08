@@ -15,7 +15,7 @@ const App: React.FC = () => {
     <Router >
       <Navbar />
       <div>
-        <img style={{ width: '100%', height: 'auto', display: 'block' }} src="img/Обложка1.jpg" alt="" />
+        <img style={{ width: '100%', height: 'auto', display: 'block', paddingTop: '85px' }} src="img/Обложка1.jpg" alt="" />
       </div>
       <Routes>
         <Route path="/" element={<Home />} />

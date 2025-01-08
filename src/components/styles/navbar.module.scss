@@ -8,6 +8,11 @@ $logo-letter-spacing: 4px;
 $phone-letter-spacing: 3px;
 
 .navbar {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   z-index: 1;
    display: flex;
    padding: 10px 20px;
    justify-content: space-between;
